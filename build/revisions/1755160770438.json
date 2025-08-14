@@ -1,0 +1,1384 @@
+{
+  "model": {
+    "Profile": {
+      "name": "Profile",
+      "mutable": true,
+      "attributes": {
+        "label": [
+          "Profile",
+          "Profiles"
+        ],
+        "template": [
+          "{{name}}"
+        ],
+        "icon": [
+          "user"
+        ]
+      },
+      "columns": [
+        {
+          "type": "String",
+          "name": "id",
+          "required": true,
+          "multiple": false,
+          "attributes": {
+            "label": [
+              "ID"
+            ],
+            "id": true,
+            "default": [
+              "cuid()"
+            ],
+            "list.overflow": [
+              {
+                "length": 10,
+                "hellip": true
+              }
+            ],
+            "description": [
+              "Unique generated identifier."
+            ],
+            "example": [
+              "pjfdz7tg8bcf7e2lig3iuej3"
+            ]
+          }
+        },
+        {
+          "type": "String",
+          "name": "name",
+          "required": true,
+          "multiple": false,
+          "attributes": {
+            "label": [
+              "Name"
+            ],
+            "searchable": true,
+            "field.text": [
+              {
+                "required": true
+              }
+            ],
+            "is.required": [
+              "Required"
+            ],
+            "is.notempty": [
+              "Cannot be empty"
+            ],
+            "list.text": true,
+            "view.text": true,
+            "description": [
+              "Full name (first middle last)."
+            ],
+            "example": [
+              "John Doe"
+            ]
+          }
+        },
+        {
+          "type": "String",
+          "name": "image",
+          "required": false,
+          "multiple": false,
+          "attributes": {
+            "label": [
+              "Image"
+            ],
+            "field.url": true,
+            "list.image": [
+              20,
+              20
+            ],
+            "view.image": [
+              100,
+              100
+            ],
+            "description": [
+              "Profile image URL."
+            ],
+            "example": [
+              "https://example.com/image.jpg"
+            ]
+          }
+        },
+        {
+          "type": "String",
+          "name": "type",
+          "required": true,
+          "multiple": false,
+          "attributes": {
+            "label": [
+              "Type"
+            ],
+            "default": [
+              "person"
+            ],
+            "filter.text": true,
+            "field.text": [
+              {
+                "required": true
+              }
+            ],
+            "is.notempty": [
+              "Cannot be empty"
+            ],
+            "list.text": [
+              {
+                "lower": true
+              }
+            ],
+            "view.text": [
+              {
+                "lower": true
+              }
+            ],
+            "description": [
+              "Type of profile (ie. person, company, etc.)."
+            ],
+            "example": [
+              "person"
+            ]
+          }
+        },
+        {
+          "type": "String",
+          "name": "roles",
+          "required": true,
+          "multiple": true,
+          "attributes": {
+            "label": [
+              "Roles"
+            ],
+            "default": [
+              []
+            ],
+            "field.textlist": [
+              {
+                "add": "Add Role"
+              }
+            ],
+            "list.hide": true,
+            "view.taglist": [
+              {
+                "warning": true
+              }
+            ],
+            "description": [
+              "Roles held by the profile. This is used with sessions to determine access levels of the app."
+            ],
+            "example": [
+              [
+                "admin",
+                "user",
+                "guest"
+              ]
+            ]
+          }
+        },
+        {
+          "type": "String",
+          "name": "tags",
+          "required": true,
+          "multiple": true,
+          "attributes": {
+            "label": [
+              "Tags"
+            ],
+            "default": [
+              []
+            ],
+            "field.taglist": true,
+            "list.hide": true,
+            "view.taglist": [
+              {
+                "warning": true
+              }
+            ],
+            "description": [
+              "Abritrary tags for general use."
+            ],
+            "example": [
+              [
+                "top buyer",
+                "verified",
+                "moderator"
+              ]
+            ]
+          }
+        },
+        {
+          "type": "Hash",
+          "name": "references",
+          "required": false,
+          "multiple": false,
+          "attributes": {
+            "label": [
+              "References"
+            ],
+            "default": [
+              {}
+            ],
+            "field.metadata": [
+              {
+                "add": "Add Reference"
+              }
+            ],
+            "list.hide": true,
+            "view.metadata": true,
+            "description": [
+              "Arbitrary key/value references for general use."
+            ],
+            "example": [
+              {
+                "fbid": "abc123"
+              }
+            ]
+          }
+        },
+        {
+          "type": "Boolean",
+          "name": "active",
+          "required": true,
+          "multiple": false,
+          "attributes": {
+            "label": [
+              "Active"
+            ],
+            "default": [
+              true
+            ],
+            "active": true,
+            "filter.switch": true,
+            "list.hide": true,
+            "view.yesno": true,
+            "description": [
+              "Special flag to indicate active rows. Inactive rows are not shown in the list view, but can be viewed in the detail view."
+            ],
+            "example": [
+              true
+            ]
+          }
+        },
+        {
+          "type": "Datetime",
+          "name": "created",
+          "required": true,
+          "multiple": false,
+          "attributes": {
+            "label": [
+              "Created"
+            ],
+            "default": [
+              "now()"
+            ],
+            "sortable": true,
+            "span.datetime": true,
+            "list.date": [
+              "m d, Y h:iA"
+            ],
+            "view.date": [
+              "m d, Y h:iA"
+            ],
+            "description": [
+              "Generated timestamp when row was created."
+            ],
+            "example": [
+              "2025-10-01T12:00:00Z"
+            ]
+          }
+        },
+        {
+          "type": "Datetime",
+          "name": "updated",
+          "required": true,
+          "multiple": false,
+          "attributes": {
+            "label": [
+              "Updated"
+            ],
+            "default": [
+              "now()"
+            ],
+            "timestamp": true,
+            "sortable": true,
+            "span.datetime": true,
+            "list.date": [
+              "m d, Y h:iA"
+            ],
+            "view.date": [
+              "m d, Y h:iA"
+            ],
+            "description": [
+              "Generated timestamp that is updated whenever the row has changed."
+            ],
+            "example": [
+              "2025-10-01T12:00:00Z"
+            ]
+          }
+        },
+        {
+          "type": "Auth",
+          "name": "auth",
+          "required": false,
+          "multiple": false,
+          "attributes": {}
+        },
+        {
+          "type": "Application",
+          "name": "applications",
+          "required": true,
+          "multiple": true,
+          "attributes": {
+            "label": [
+              "Applications"
+            ]
+          }
+        },
+        {
+          "type": "Session",
+          "name": "sessions",
+          "required": true,
+          "multiple": true,
+          "attributes": {
+            "label": [
+              "Sessions"
+            ]
+          }
+        }
+      ]
+    },
+    "Auth": {
+      "name": "Auth",
+      "mutable": true,
+      "attributes": {
+        "label": [
+          "Auth",
+          "Auth"
+        ],
+        "template": [
+          "{{token}}"
+        ],
+        "icon": [
+          "lock"
+        ],
+        "query": [
+          [
+            "*",
+            "profile.*"
+          ]
+        ]
+      },
+      "columns": [
+        {
+          "type": "String",
+          "name": "id",
+          "required": true,
+          "multiple": false,
+          "attributes": {
+            "label": [
+              "ID"
+            ],
+            "id": true,
+            "default": [
+              "cuid()"
+            ],
+            "list.overflow": [
+              {
+                "length": 10,
+                "hellip": true
+              }
+            ],
+            "description": [
+              "Unique generated identifier."
+            ],
+            "example": [
+              "dz7tg8bcf7e2lig3iuej3pjf"
+            ]
+          }
+        },
+        {
+          "type": "String",
+          "name": "profileId",
+          "required": true,
+          "multiple": false,
+          "attributes": {
+            "label": [
+              "Profile"
+            ],
+            "field.relation": [
+              {
+                "id": "id",
+                "search": "/admin/profile/search?json",
+                "template": "{{name}}"
+              }
+            ],
+            "is.required": [
+              "Required"
+            ],
+            "is.notempty": [
+              "Cannot be empty"
+            ],
+            "filter.relation": [
+              {
+                "id": "id",
+                "search": "/admin/profile/search?json",
+                "template": "{{name}}"
+              }
+            ],
+            "list.template": [
+              {
+                "template": "{{profile.name}}"
+              }
+            ],
+            "view.template": [
+              {
+                "template": "{{profile.name}}"
+              }
+            ],
+            "description": [
+              "Profile this auth belongs to."
+            ],
+            "example": [
+              "pjfdz7tg8bcf7e2lig3iuej3"
+            ]
+          }
+        },
+        {
+          "type": "String",
+          "name": "type",
+          "required": true,
+          "multiple": false,
+          "attributes": {
+            "label": [
+              "Type"
+            ],
+            "default": [
+              "username"
+            ],
+            "field.text": [
+              {
+                "required": true
+              }
+            ],
+            "filter.text": true,
+            "is.required": [
+              "Required"
+            ],
+            "is.notempty": [
+              "Cannot be empty"
+            ],
+            "list.text": true,
+            "view.text": true,
+            "description": [
+              "Type of authentication method (username, email, phone)."
+            ],
+            "example": [
+              "username"
+            ]
+          }
+        },
+        {
+          "type": "String",
+          "name": "token",
+          "required": true,
+          "multiple": false,
+          "attributes": {
+            "label": [
+              "Token"
+            ],
+            "unique": true,
+            "encrypted": true,
+            "field.text": [
+              {
+                "required": true
+              }
+            ],
+            "is.required": [
+              "Required"
+            ],
+            "is.cge": [
+              5,
+              "Must be at least 5 characters"
+            ],
+            "list.text": true,
+            "view.text": true,
+            "description": [
+              "The actual username, email, or phone (depending on type)"
+            ],
+            "example": [
+              "john@doe.com"
+            ]
+          }
+        },
+        {
+          "type": "String",
+          "name": "secret",
+          "required": true,
+          "multiple": false,
+          "attributes": {
+            "label": [
+              "Secret"
+            ],
+            "hash": true,
+            "secret": true,
+            "field.password": true,
+            "is.required": [
+              "Required"
+            ],
+            "is.notempty": [
+              "Cannot be empty"
+            ],
+            "list.hide": true,
+            "view.hide": true,
+            "description": [
+              "Password used to verify."
+            ],
+            "example": [
+              "s3cr3t P@ssw0rd"
+            ]
+          }
+        },
+        {
+          "type": "Boolean",
+          "name": "verified",
+          "required": true,
+          "multiple": false,
+          "attributes": {
+            "label": [
+              "Verified"
+            ],
+            "default": [
+              false
+            ],
+            "field.switch": true,
+            "filter.switch": true,
+            "list.yesno": true,
+            "view.yesno": true,
+            "description": [
+              "Indicates if the type has been verified (email, phone, etc.)."
+            ],
+            "example": [
+              true
+            ]
+          }
+        },
+        {
+          "type": "Datetime",
+          "name": "consumed",
+          "required": true,
+          "multiple": false,
+          "attributes": {
+            "label": [
+              "Last Used"
+            ],
+            "default": [
+              "now()"
+            ],
+            "sortable": true,
+            "list.date": [
+              "m d, Y h:iA"
+            ],
+            "view.date": [
+              "m d, Y h:iA"
+            ],
+            "description": [
+              "Timestamp when this auth was last used."
+            ],
+            "example": [
+              "2025-10-01T12:00:00Z"
+            ]
+          }
+        },
+        {
+          "type": "Boolean",
+          "name": "active",
+          "required": true,
+          "multiple": false,
+          "attributes": {
+            "label": [
+              "Active"
+            ],
+            "default": [
+              true
+            ],
+            "active": true,
+            "filter.switch": true,
+            "list.hide": true,
+            "view.yesno": true,
+            "description": [
+              "Special flag to indicate active rows. Inactive rows are not shown in the list view, but can be viewed in the detail view."
+            ],
+            "example": [
+              true
+            ]
+          }
+        },
+        {
+          "type": "Datetime",
+          "name": "created",
+          "required": true,
+          "multiple": false,
+          "attributes": {
+            "label": [
+              "Created"
+            ],
+            "default": [
+              "now()"
+            ],
+            "sortable": true,
+            "list.date": [
+              "m d, Y h:iA"
+            ],
+            "view.date": [
+              "m d, Y h:iA"
+            ],
+            "description": [
+              "Generated timestamp when row was created."
+            ],
+            "example": [
+              "2025-10-01T12:00:00Z"
+            ]
+          }
+        },
+        {
+          "type": "Datetime",
+          "name": "updated",
+          "required": true,
+          "multiple": false,
+          "attributes": {
+            "label": [
+              "Updated"
+            ],
+            "default": [
+              "now()"
+            ],
+            "timestamp": true,
+            "sortable": true,
+            "list.date": [
+              "m d, Y h:iA"
+            ],
+            "view.date": [
+              "m d, Y h:iA"
+            ],
+            "description": [
+              "Generated timestamp that is updated whenever the row has changed."
+            ],
+            "example": [
+              "2025-10-01T12:00:00Z"
+            ]
+          }
+        },
+        {
+          "type": "Profile",
+          "name": "profile",
+          "required": true,
+          "multiple": false,
+          "attributes": {
+            "relation": [
+              {
+                "local": "profileId",
+                "foreign": "id"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "Application": {
+      "name": "Application",
+      "mutable": true,
+      "attributes": {
+        "label": [
+          "App",
+          "Apps"
+        ],
+        "template": [
+          "{{name}}"
+        ],
+        "icon": [
+          "laptop"
+        ],
+        "query": [
+          [
+            "*",
+            "profile.*"
+          ]
+        ]
+      },
+      "columns": [
+        {
+          "type": "String",
+          "name": "id",
+          "required": true,
+          "multiple": false,
+          "attributes": {
+            "label": [
+              "ID"
+            ],
+            "id": true,
+            "default": [
+              "cuid()"
+            ],
+            "description": [
+              "Unique generated identifier."
+            ],
+            "example": [
+              "tg8bcf7e2lig3iuej3dz7pjf"
+            ]
+          }
+        },
+        {
+          "type": "String",
+          "name": "profileId",
+          "required": true,
+          "multiple": false,
+          "attributes": {
+            "label": [
+              "Profile"
+            ],
+            "field.relation": [
+              {
+                "id": "id",
+                "search": "/admin/profile/search?json",
+                "template": "{{name}}"
+              }
+            ],
+            "is.required": [
+              "Required"
+            ],
+            "is.notempty": [
+              "Cannot be empty"
+            ],
+            "filter.relation": [
+              {
+                "id": "id",
+                "search": "/admin/profile/search?json",
+                "template": "{{name}}"
+              }
+            ],
+            "list.template": [
+              {
+                "template": "{{profile.name}}"
+              }
+            ],
+            "view.template": [
+              {
+                "template": "{{profile.name}}"
+              }
+            ],
+            "description": [
+              "The profile author of this application."
+            ],
+            "example": [
+              "pjfdz7tg8bcf7e2lig3iuej3"
+            ]
+          }
+        },
+        {
+          "type": "String",
+          "name": "name",
+          "required": true,
+          "multiple": false,
+          "attributes": {
+            "label": [
+              "Name"
+            ],
+            "searchable": true,
+            "field.text": [
+              {
+                "required": true
+              }
+            ],
+            "is.required": [
+              "Required"
+            ],
+            "list.text": true,
+            "view.text": true,
+            "description": [
+              "Arbitrary name of the application. Used in 3-legged OAuth flows."
+            ],
+            "example": [
+              "My Awesome App"
+            ]
+          }
+        },
+        {
+          "type": "String",
+          "name": "logo",
+          "required": false,
+          "multiple": false,
+          "attributes": {
+            "label": [
+              "Image"
+            ],
+            "field.url": true,
+            "list.image": [
+              20,
+              20
+            ],
+            "view.image": [
+              100,
+              100
+            ],
+            "description": [
+              "Logo image URL of the application. Used in 3-legged OAuth flows."
+            ],
+            "example": [
+              "https://example.com/logo.png"
+            ]
+          }
+        },
+        {
+          "type": "String",
+          "name": "website",
+          "required": false,
+          "multiple": false,
+          "attributes": {
+            "label": [
+              "Website"
+            ],
+            "searchable": true,
+            "field.url": true,
+            "list.link": [
+              {
+                "target": "blank"
+              }
+            ],
+            "view.link": [
+              {
+                "target": "blank"
+              }
+            ],
+            "description": [
+              "Arbitrary website URL of the application. Used in 3-legged OAuth flows."
+            ]
+          }
+        },
+        {
+          "type": "String",
+          "name": "secret",
+          "required": true,
+          "multiple": false,
+          "attributes": {
+            "label": [
+              "Secret"
+            ],
+            "default": [
+              "cuid()"
+            ],
+            "list.hide": true,
+            "view.hide": true,
+            "description": [
+              "Generated unique hash needed to perform write operations (POST, PUT, DELETE, etc.)"
+            ],
+            "example": [
+              "bcf7e2lig3iuej3tg8dz7pjf"
+            ]
+          }
+        },
+        {
+          "type": "String",
+          "name": "scopes",
+          "required": true,
+          "multiple": true,
+          "attributes": {
+            "label": [
+              "Scopes"
+            ],
+            "default": [
+              []
+            ],
+            "field.taglist": true,
+            "list.hide": true,
+            "view.taglist": [
+              {
+                "warning": true
+              }
+            ],
+            "description": [
+              "API scopes that this application can request. This is mapped with endpoints."
+            ],
+            "example": [
+              [
+                "commerce",
+                "location",
+                "account"
+              ]
+            ]
+          }
+        },
+        {
+          "type": "Boolean",
+          "name": "active",
+          "required": true,
+          "multiple": false,
+          "attributes": {
+            "label": [
+              "Active"
+            ],
+            "default": [
+              true
+            ],
+            "active": true,
+            "filter.switch": true,
+            "list.hide": true,
+            "view.yesno": true,
+            "description": [
+              "Special flag to indicate active rows. Inactive rows are not shown in the list view, but can be viewed in the detail view."
+            ],
+            "example": [
+              true
+            ]
+          }
+        },
+        {
+          "type": "Datetime",
+          "name": "expires",
+          "required": true,
+          "multiple": false,
+          "attributes": {
+            "label": [
+              "Expires"
+            ],
+            "sortable": true,
+            "field.datetime": true,
+            "is.required": [
+              "Required"
+            ],
+            "list.date": [
+              "m d, Y h:iA"
+            ],
+            "view.date": [
+              "m d, Y h:iA"
+            ],
+            "description": [
+              "Expiration date of the application. After this date, the application will not be able to perform any operations."
+            ],
+            "example": [
+              "2025-12-31T23:59:59Z"
+            ]
+          }
+        },
+        {
+          "type": "Datetime",
+          "name": "created",
+          "required": true,
+          "multiple": false,
+          "attributes": {
+            "label": [
+              "Created"
+            ],
+            "default": [
+              "now()"
+            ],
+            "sortable": true,
+            "list.date": [
+              "m d, Y h:iA"
+            ],
+            "view.date": [
+              "m d, Y h:iA"
+            ],
+            "description": [
+              "Generated timestamp when row was created."
+            ],
+            "example": [
+              "2025-10-01T12:00:00Z"
+            ]
+          }
+        },
+        {
+          "type": "Datetime",
+          "name": "updated",
+          "required": true,
+          "multiple": false,
+          "attributes": {
+            "label": [
+              "Updated"
+            ],
+            "default": [
+              "now()"
+            ],
+            "timestamp": true,
+            "sortable": true,
+            "list.date": [
+              "m d, Y h:iA"
+            ],
+            "view.date": [
+              "m d, Y h:iA"
+            ],
+            "description": [
+              "Generated timestamp that is updated whenever the row has changed."
+            ],
+            "example": [
+              "2025-10-01T12:00:00Z"
+            ]
+          }
+        },
+        {
+          "type": "Session",
+          "name": "session",
+          "required": true,
+          "multiple": true,
+          "attributes": {
+            "label": [
+              "Sessions"
+            ]
+          }
+        },
+        {
+          "type": "Profile",
+          "name": "profile",
+          "required": true,
+          "multiple": false,
+          "attributes": {
+            "relation": [
+              {
+                "local": "profileId",
+                "foreign": "id"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "Session": {
+      "name": "Session",
+      "mutable": true,
+      "attributes": {
+        "label": [
+          "Session",
+          "Sessions"
+        ],
+        "template": [
+          "{{profile.name}}"
+        ],
+        "icon": [
+          "coffee"
+        ],
+        "query": [
+          [
+            "*",
+            "profile.*",
+            "application.*"
+          ]
+        ]
+      },
+      "columns": [
+        {
+          "type": "String",
+          "name": "id",
+          "required": true,
+          "multiple": false,
+          "attributes": {
+            "label": [
+              "ID"
+            ],
+            "id": true,
+            "default": [
+              "cuid()"
+            ],
+            "description": [
+              "Unique generated identifier."
+            ],
+            "example": [
+              "7e2lig3iuej3bcftg8dz7pjf"
+            ]
+          }
+        },
+        {
+          "type": "String",
+          "name": "applicationId",
+          "required": true,
+          "multiple": false,
+          "attributes": {
+            "label": [
+              "App"
+            ],
+            "field.relation": [
+              {
+                "id": "id",
+                "search": "/admin/application/search?json",
+                "template": "{{name}}"
+              }
+            ],
+            "is.required": [
+              "Required"
+            ],
+            "is.notempty": [
+              "Cannot be empty"
+            ],
+            "filter.relation": [
+              {
+                "id": "id",
+                "search": "/admin/application/search?json",
+                "template": "{{name}}"
+              }
+            ],
+            "list.template": [
+              {
+                "template": "{{application.name}}"
+              }
+            ],
+            "view.template": [
+              {
+                "template": "{{application.name}}"
+              }
+            ],
+            "description": [
+              "Application this session belongs to."
+            ],
+            "example": [
+              "tg8bcf7e2lig3iuej3dz7pjf"
+            ]
+          }
+        },
+        {
+          "type": "String",
+          "name": "profileId",
+          "required": true,
+          "multiple": false,
+          "attributes": {
+            "label": [
+              "Profile"
+            ],
+            "field.relation": [
+              {
+                "id": "id",
+                "search": "/admin/profile/search?json",
+                "template": "{{name}}"
+              }
+            ],
+            "is.required": [
+              "Required"
+            ],
+            "is.notempty": [
+              "Cannot be empty"
+            ],
+            "filter.relation": [
+              {
+                "id": "id",
+                "search": "/admin/profile/search?json",
+                "template": "{{name}}"
+              }
+            ],
+            "list.template": [
+              {
+                "template": "{{profile.name}}"
+              }
+            ],
+            "view.template": [
+              {
+                "template": "{{profile.name}}"
+              }
+            ],
+            "description": [
+              "Profile this session belongs to."
+            ],
+            "example": [
+              "pjfdz7tg8bcf7e2lig3iuej3"
+            ]
+          }
+        },
+        {
+          "type": "String",
+          "name": "secret",
+          "required": true,
+          "multiple": false,
+          "attributes": {
+            "label": [
+              "Secret"
+            ],
+            "default": [
+              "cuid()"
+            ],
+            "is.notempty": [
+              "Cannot be empty"
+            ],
+            "list.hide": true,
+            "view.hide": true,
+            "description": [
+              "Generated unique hash needed to perform write operations (POST, PUT, DELETE, etc.)"
+            ],
+            "example": [
+              "lig3iuej37e2bcftg8dz7pjf"
+            ]
+          }
+        },
+        {
+          "type": "String",
+          "name": "scopes",
+          "required": true,
+          "multiple": true,
+          "attributes": {
+            "label": [
+              "Scopes"
+            ],
+            "default": [
+              []
+            ],
+            "field.taglist": true,
+            "list.hide": true,
+            "view.taglist": [
+              {
+                "warning": true
+              }
+            ],
+            "description": [
+              "API scopes that this session can request. This is mapped with endpoints."
+            ],
+            "example": [
+              [
+                "commerce",
+                "location",
+                "account"
+              ]
+            ]
+          }
+        },
+        {
+          "type": "Boolean",
+          "name": "active",
+          "required": true,
+          "multiple": false,
+          "attributes": {
+            "label": [
+              "Active"
+            ],
+            "default": [
+              true
+            ],
+            "active": true,
+            "filter.switch": true,
+            "list.hide": true,
+            "view.yesno": true,
+            "description": [
+              "Special flag to indicate active rows. Inactive rows are not shown in the list view, but can be viewed in the detail view."
+            ],
+            "example": [
+              true
+            ]
+          }
+        },
+        {
+          "type": "Datetime",
+          "name": "expires",
+          "required": true,
+          "multiple": false,
+          "attributes": {
+            "label": [
+              "Expires"
+            ],
+            "sortable": true,
+            "field.datetime": true,
+            "is.required": [
+              "Required"
+            ],
+            "is.notempty": [
+              "Cannot be empty"
+            ],
+            "list.date": [
+              "m d, Y h:iA"
+            ],
+            "view.date": [
+              "m d, Y h:iA"
+            ],
+            "description": [
+              "Expiration date of the session. After this date, the session will not be able to perform any operations."
+            ],
+            "example": [
+              "2025-12-31T23:59:59Z"
+            ]
+          }
+        },
+        {
+          "type": "Datetime",
+          "name": "created",
+          "required": true,
+          "multiple": false,
+          "attributes": {
+            "label": [
+              "Created"
+            ],
+            "default": [
+              "now()"
+            ],
+            "sortable": true,
+            "list.date": [
+              "m d, Y h:iA"
+            ],
+            "view.date": [
+              "m d, Y h:iA"
+            ],
+            "description": [
+              "Generated timestamp when row was created."
+            ],
+            "example": [
+              "2025-10-01T12:00:00Z"
+            ]
+          }
+        },
+        {
+          "type": "Datetime",
+          "name": "updated",
+          "required": true,
+          "multiple": false,
+          "attributes": {
+            "label": [
+              "Updated"
+            ],
+            "default": [
+              "now()"
+            ],
+            "timestamp": true,
+            "sortable": true,
+            "list.date": [
+              "m d, Y h:iA"
+            ],
+            "view.date": [
+              "m d, Y h:iA"
+            ],
+            "description": [
+              "Generated timestamp that is updated whenever the row has changed."
+            ],
+            "example": [
+              "2025-10-01T12:00:00Z"
+            ]
+          }
+        },
+        {
+          "type": "Application",
+          "name": "application",
+          "required": true,
+          "multiple": false,
+          "attributes": {
+            "relation": [
+              {
+                "local": "applicationId",
+                "foreign": "id"
+              }
+            ]
+          }
+        },
+        {
+          "type": "Profile",
+          "name": "profile",
+          "required": true,
+          "multiple": false,
+          "attributes": {
+            "relation": [
+              {
+                "local": "profileId",
+                "foreign": "id"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "plugin": {
+    "/home/njven/stackpress/node_modules/stackpress/cjs/client/transform": {},
+    "/home/njven/stackpress/node_modules/stackpress/cjs/types/transform": {},
+    "/home/njven/stackpress/node_modules/stackpress/cjs/sql/transform": {},
+    "/home/njven/stackpress/node_modules/stackpress/cjs/view/transform": {}
+  }
+}

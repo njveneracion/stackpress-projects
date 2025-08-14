@@ -1,51 +1,61 @@
-//plugins/app/views/home.tsx
-import type { ServerPageProps } from "stackpress/view/client";
-import { useState } from "react";
+import type { ServerPageProps } from 'stackpress/view/client';
+import { useState, useEffect } from 'react';
+import { 
+  unload,
+  useResponse,
+  NotifyContainer,
+  StackpressProvider
+} from 'stackpress/view/client';
 
-export function Head(props: ServerPageProps<{ title: string }>) {
-  const { data, styles = [] } = props;
+export function Head(props: ServerPageProps) {
+  const { styles = [] } = props;
   //render
   return (
     <>
-      <title>{data.title}</title>
+      <title>Stackpress</title>
       <meta name="description" content="Welcome to Stackpress" />
       {styles.map((href, index) => (
         <link key={index} rel="stylesheet" type="text/css" href={href} />
       ))}
     </>
-  );
+  )
 }
 
-type UserInfo = {
-  name: string;
-  age: number;
-};
-
-export default function HomePage(props: ServerPageProps) {
-  //response
-  const { response } = props;
-  const { name = "guest", age = 0 } = (response.results || {}) as UserInfo;
-
+export function HomeBody() {
   //basic count state
-  const [count, setCount] = useState(0);
+  const [ count, setCount ] = useState(0);
+  //response
+  const response = useResponse<{ name: string }>();
+  const { name = 'guest' } = response.results || {};
   //render
   return (
-    <div>
-      <h1 className="text-3xl font-bold font-sans">
-        Welcome{" "}
-        <span className={name === "guest" ? "text-red-500" : "text-green-500"}>
-          {`${name}`.charAt(0).toUpperCase() + `${name}`.slice(1)}
-        </span>{" "}
-        to STACKPRESS
+    <div className="p-4">
+      <h1 className="text-3xl font-bold">
+        Welcome {name} to Stackpress
       </h1>
-      <p>
-        You are <span className="text-blue-500 text-2xl">{`${age}`}</span> years
-        old.
-      </p>
-      <button className="mx-3" onClick={() => setCount((count) => count + 1)}>
+      <button onClick={() => setCount(count => count + 1)}>
         count is {count}
       </button>
-      <a href="/about">About</a>
     </div>
-  );
+  )
+}
+
+export default function HomePage(props: ServerPageProps) {
+  //layout props
+  const { data, session, request, response } = props;
+  //unload flash message
+  useEffect(unload, []);
+  //render
+  return (
+    <StackpressProvider 
+      //@ts-ignore
+      data={data}
+      session={session}
+      request={request}
+      response={response}
+    >
+      <HomeBody />
+      <NotifyContainer />
+    </StackpressProvider>
+  )
 }

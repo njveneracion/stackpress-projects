@@ -253,6 +253,11 @@
     style-mod "^4.1.0"
     w3c-keyname "^2.2.4"
 
+"@electric-sql/pglite@0.2.17":
+  version "0.2.17"
+  resolved "https://registry.yarnpkg.com/@electric-sql/pglite/-/pglite-0.2.17.tgz#23d53a9b7ddd1590d59d7c701aba23b037f08108"
+  integrity sha512-qEpKRT2oUaWDH6tjRxLHjdzMqRUGYDnGZlKrnL4dJ77JVMcP2Hpo3NYnOSPKdZdeec57B6QPprCUFg0picx5Pw==
+
 "@esbuild/aix-ppc64@0.25.9":
   version "0.25.9"
   resolved "https://registry.yarnpkg.com/@esbuild/aix-ppc64/-/aix-ppc64-0.25.9.tgz#bef96351f16520055c947aba28802eede3c9e9a9"
@@ -796,6 +801,14 @@
     "@stackpress/idea-parser" "0.6.1"
     "@stackpress/lib" "0.6.1"
 
+"@stackpress/idea@^0.6.1":
+  version "0.6.1"
+  resolved "https://registry.yarnpkg.com/@stackpress/idea/-/idea-0.6.1.tgz#b1231efa9434958e34b3581e40b52b624e8f4531"
+  integrity sha512-BPKwHlOH4+5IASk0osGc2gbVv0Y6UyyjHh2pzj+qn70gfSz9PKMp6Sq9IjYwVBOIB47NXifyp+mhxchsUdg7HQ==
+  dependencies:
+    "@stackpress/idea-parser" "0.6.1"
+    "@stackpress/idea-transformer" "0.6.1"
+
 "@stackpress/ingest@0.6.1":
   version "0.6.1"
   resolved "https://registry.yarnpkg.com/@stackpress/ingest/-/ingest-0.6.1.tgz#20ba2a33a1d4a1573ed49774f887db2b0086fb35"
@@ -803,6 +816,13 @@
   dependencies:
     "@stackpress/lib" "0.6.1"
     "@whatwg-node/server" "0.6.7"
+
+"@stackpress/inquire-pglite@0.6.1":
+  version "0.6.1"
+  resolved "https://registry.yarnpkg.com/@stackpress/inquire-pglite/-/inquire-pglite-0.6.1.tgz#30bcb6969260abb831cf95a4b4ebd8fd1e4085ec"
+  integrity sha512-llthB4gi7fnix7xByS0nDEZ+pMABJmiAFLojTNMPSTGqzLHhNQBfwowbykOu9RmXX2UBVtKk7ePzeBNkr3W8NA==
+  dependencies:
+    "@stackpress/inquire" "0.6.1"
 
 "@stackpress/inquire@0.6.1":
   version "0.6.1"
