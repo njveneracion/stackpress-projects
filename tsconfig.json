@@ -1,0 +1,13 @@
+{
+  "extends": "stackpress/tsconfig/esm",
+  "compilerOptions": {
+    "module": "nodenext",
+    "moduleResolution": "nodenext"
+  },
+  "include": [ 
+    "config/**/*.ts", 
+    "plugins/**/*.ts", 
+    "plugins/**/*.tsx"
+  ],
+  "exclude": [ "node_modules" ]
+}
