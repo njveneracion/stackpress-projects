@@ -4,10 +4,12 @@
     "module": "nodenext",
     "moduleResolution": "nodenext"
   },
-  "include": [ 
-    "config/**/*.ts", 
-    "plugins/**/*.ts", 
+  "include": [
+    "config/**/*.ts",
+    "plugins/**/*.ts",
     "plugins/**/*.tsx"
   ],
-  "exclude": [ "node_modules" ]
+  "exclude": [
+    "node_modules"
+  ]
 }

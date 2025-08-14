@@ -16,10 +16,15 @@ export function Head(props: ServerPageProps<{ title: string }>) {
   );
 }
 
+type UserInfo = {
+  name: string;
+  age: number;
+};
+
 export default function HomePage(props: ServerPageProps) {
   //response
   const { response } = props;
-  const { name = "guest", age = 0 } = response.results || {};
+  const { name = "guest", age = 0 } = (response.results || {}) as UserInfo;
 
   //basic count state
   const [count, setCount] = useState(0);
@@ -37,7 +42,7 @@ export default function HomePage(props: ServerPageProps) {
         You are <span className="text-blue-500 text-2xl">{`${age}`}</span> years
         old.
       </p>
-      <button onClick={() => setCount((count) => count + 1)}>
+      <button className="mx-3" onClick={() => setCount((count) => count + 1)}>
         count is {count}
       </button>
       <a href="/about">About</a>
