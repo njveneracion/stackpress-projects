@@ -31,7 +31,7 @@ export default function HomePage(props: ServerPageProps) {
         <span className={name === "guest" ? "text-red-500" : "text-green-500"}>
           {`${name}`.charAt(0).toUpperCase() + `${name}`.slice(1)}
         </span>{" "}
-        to Stackpress
+        to STACKPRESS
       </h1>
       <p>
         You are <span className="text-blue-500 text-2xl">{`${age}`}</span> years
