@@ -26,7 +26,7 @@ const config: Config = {
   },
   database: {
     //used to encrypt/decrypt data in the database
-    seed: '[INSERT SEED HERE]',
+    seed: 'schema.idea',
     //where to store create and alter table migration files
     // - This is used in conjunction with `revisions`
     // - This doesn't update the database, it simply logs the changes

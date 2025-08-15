@@ -36,6 +36,9 @@ export function HomeBody() {
       <button onClick={() => setCount(count => count + 1)}>
         count is {count}
       </button>
+      <a href="/about" className="text-blue-500 hover:underline">
+        About Page
+      </a>
     </div>
   )
 }
@@ -49,7 +52,7 @@ export default function HomePage(props: ServerPageProps) {
   return (
     <StackpressProvider 
       //@ts-ignore
-      data={data}
+      data={data} 
       session={session}
       request={request}
       response={response}
