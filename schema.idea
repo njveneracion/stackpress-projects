@@ -1,5 +1,2 @@
 use "stackpress/stackpress.idea"
-
-plugin "./docs/transform" {
-  title "Documentation"
-}
+use "user.idea"

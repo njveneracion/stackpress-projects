@@ -20,4 +20,11 @@ export default action(async function Populate(_req, _res, ctx) {
         scopes: ['profile-write', 'auth-read'],
         expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 365)
     });
+
+    await ctx.resolve('users-create', {
+        id: 'admin2323232',
+        name: 'Admin',
+        username: 'admin',
+        password: 'admin'
+    });
 });

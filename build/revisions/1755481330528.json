@@ -169,7 +169,7 @@
               [
                 "admin",
                 "user",
-                "guest"
+                "gues"
               ]
             ]
           }
@@ -1369,6 +1369,77 @@
                 "local": "profileId",
                 "foreign": "id"
               }
+            ]
+          }
+        }
+      ]
+    },
+    "User": {
+      "name": "User",
+      "mutable": true,
+      "attributes": {
+        "label": [
+          "User",
+          "Users"
+        ]
+      },
+      "columns": [
+        {
+          "type": "String",
+          "name": "id",
+          "required": true,
+          "multiple": false,
+          "attributes": {
+            "id": true,
+            "default": [
+              "cuid()"
+            ]
+          }
+        },
+        {
+          "type": "String",
+          "name": "name",
+          "required": true,
+          "multiple": false,
+          "attributes": {
+            "label": [
+              "Name"
+            ],
+            "searchable": true,
+            "field.text": true,
+            "is.required": [
+              "Name is required"
+            ]
+          }
+        },
+        {
+          "type": "String",
+          "name": "username",
+          "required": true,
+          "multiple": false,
+          "attributes": {
+            "label": [
+              "Username"
+            ],
+            "searchable": true,
+            "field.text": true,
+            "is.required": [
+              "Username is required"
+            ]
+          }
+        },
+        {
+          "type": "String",
+          "name": "password",
+          "required": true,
+          "multiple": false,
+          "attributes": {
+            "label": [
+              "Password"
+            ],
+            "field.password": true,
+            "is.required": [
+              "Password is required"
             ]
           }
         }

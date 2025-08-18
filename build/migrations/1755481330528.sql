@@ -1,5 +1,6 @@
 DROP TABLE IF EXISTS "auth";
 DROP TABLE IF EXISTS "session";
+DROP TABLE IF EXISTS "user";
 DROP TABLE IF EXISTS "application";
 DROP TABLE IF EXISTS "profile";
 CREATE TABLE IF NOT EXISTS "profile" ("id" VARCHAR(255) NOT NULL, "name" VARCHAR(255) NOT NULL, "image" VARCHAR(255) DEFAULT NULL, "type" VARCHAR(255) NOT NULL DEFAULT 'person', "roles" JSONB NOT NULL, "tags" JSONB NOT NULL, "references" JSONB DEFAULT NULL, "active" BOOLEAN NOT NULL DEFAULT TRUE, "created" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, "updated" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP , PRIMARY KEY ("id"));
@@ -16,6 +17,9 @@ CREATE INDEX "application_active_index" ON "application"("active");
 CREATE INDEX "application_expires_index" ON "application"("expires");
 CREATE INDEX "application_created_index" ON "application"("created");
 CREATE INDEX "application_updated_index" ON "application"("updated");
+CREATE TABLE IF NOT EXISTS "user" ("id" VARCHAR(255) NOT NULL, "name" VARCHAR(255) NOT NULL, "username" VARCHAR(255) NOT NULL, "password" VARCHAR(255) NOT NULL , PRIMARY KEY ("id"));
+CREATE INDEX "user_name_index" ON "user"("name");
+CREATE INDEX "user_username_index" ON "user"("username");
 CREATE TABLE IF NOT EXISTS "session" ("id" VARCHAR(255) NOT NULL, "application_id" VARCHAR(255) NOT NULL, "profile_id" VARCHAR(255) NOT NULL, "secret" VARCHAR(255) NOT NULL, "scopes" JSONB NOT NULL, "active" BOOLEAN NOT NULL DEFAULT TRUE, "expires" TIMESTAMP NOT NULL, "created" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, "updated" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP , PRIMARY KEY ("id") , CONSTRAINT "session_application_id_foreign" FOREIGN KEY ("application_id") REFERENCES "application"("id") ON DELETE CASCADE ON UPDATE RESTRICT, CONSTRAINT "session_profile_id_foreign" FOREIGN KEY ("profile_id") REFERENCES "profile"("id") ON DELETE CASCADE ON UPDATE RESTRICT);
 CREATE INDEX "session_application_id_index" ON "session"("application_id");
 CREATE INDEX "session_profile_id_index" ON "session"("profile_id");

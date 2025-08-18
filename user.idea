@@ -1,0 +1,6 @@
+model Users @label("User" "Users") {
+    id String @id @default("cuid()")
+    name String @label("Name") @searchable @field.text @is.required("Name is required")
+    username String @label("Username") @searchable @field.text @is.required("Username is required")
+    password String @label("Password") @field.password @is.required("Password is required")
+}
